@@ -18,7 +18,7 @@
         </button>
       </div>
       <ul
-        v-if="games.results"
+        v-if="games"
         class="grid grid-cols-1 grid-flow-row gap-4 md:grid-cols-2 lg:grid-cols-3"
       >
         <li v-for="game in games.results" :key="game.id">
@@ -27,16 +27,17 @@
           </router-link>
         </li>
       </ul>
-      <p v-if="loading">Loading...</p>
-      <p v-if="hasErrors">{{ hasErrors }}</p>
+      <p v-if="!games && !error">Loading...</p>
+      <p v-if="error">{{ error }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import { ref, computed, onMounted, onUnmounted, provide } from 'vue';
+
 import GameCard from '../components/GameCard.vue';
-import useFetch from '../composables/useFetch';
+import { useSWRFetch } from '../composables/useSWRFetch';
 
 export default {
   components: {
@@ -44,25 +45,23 @@ export default {
   },
   setup() {
     const searchInput = ref('');
-    const { results, hasErrors, loading, execute } = useFetch();
-
-    onMounted(() => {
-      execute(
-        'https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added'
-      );
-    });
+    const hasClicked = ref(false);
+    const { data: games, error } = useSWRFetch(
+      'https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added',
+      {
+        revalidateOnFocus: false,
+      }
+    );
 
     function fetchGame() {
-      execute(`https://api.rawg.io/api/games?search=${searchInput.value}`);
+      hasClicked.value = true;
     }
 
     // anything that needs to be accessed in the template
     return {
       searchInput,
-      games: results,
-      loading,
-      hasErrors,
-      execute,
+      games,
+      error,
       fetchGame,
     };
   },

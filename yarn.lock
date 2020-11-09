@@ -2155,6 +2155,11 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+swrv@^1.0.0-beta.5:
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/swrv/-/swrv-1.0.0-beta.5.tgz#281cfaeb71c06f0704b388434abb63958a228407"
+  integrity sha512-uEHcCjVvhAuYq0hQrmRigLqCoGncH75yfz2sTsEnSTkHt/FUwUXIhPiL+5B1oUAH3C2zJa6mpAo6BcP6iVMZsw==
+
 tailwindcss@^1.8.10:
   version "1.8.10"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.8.10.tgz#945ef151c401c04a1c95e6a6bc747387a8d1b9dc"

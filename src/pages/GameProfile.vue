@@ -1,5 +1,5 @@
 <template>
-  <section class="grid grid-cols-2 py-16 px-32 gap-4" v-if="!loading">
+  <section class="grid grid-cols-2 py-16 px-32 gap-4" v-if="gameDetails">
     <aside class="max-w-screen-sm">
       <router-link to="/">
         <svg
@@ -99,22 +99,21 @@
 </template>
 
 <script>
-import useFetch from '../composables/useFetch';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+
+import { useSWRFetch } from '../composables/useSWRFetch';
 
 export default {
   setup() {
     const route = useRoute();
-    const { results, hasErrors, loading, execute } = useFetch();
     const gameTitle = route.params.name;
-
-    onMounted(() => {
-      execute(`https://api.rawg.io/api/games/${gameTitle}`);
-    });
+    const { data: gameDetails, error } = useSWRFetch(
+      `https://api.rawg.io/api/games/${gameTitle}`
+    );
 
     const dateReleased = computed(() => {
-      return new Date(results.value.released).toLocaleString(['en-US'], {
+      return new Date(gameDetails.value.released).toLocaleString(['en-US'], {
         day: '2-digit',
         month: 'short',
         year: 'numeric',
@@ -122,16 +121,15 @@ export default {
     });
 
     const developers = computed(() => {
-      const gameInfo = results.value;
+      const gameInfo = gameDetails.value;
       return gameInfo.developers?.map(developer => developer.name).join('');
     });
 
     return {
-      gameDetails: results,
+      gameDetails,
       dateReleased,
       developers,
-      loading,
-      hasErrors,
+      error,
     };
   },
 };
