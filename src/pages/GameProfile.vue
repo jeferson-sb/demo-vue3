@@ -99,38 +99,39 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-import { useSWRFetch } from '../composables/useSWRFetch';
+import { useSWRFetch } from '../composables/useSWRFetch'
 
 export default {
+  name: 'GameProfile',
   setup() {
-    const route = useRoute();
-    const gameTitle = route.params.name;
+    const route = useRoute()
+    const gameTitle = route.params.name
     const { data: gameDetails, error } = useSWRFetch(
-      `https://api.rawg.io/api/games/${gameTitle}`
-    );
+      `https://api.rawg.io/api/games/${gameTitle}`,
+    )
 
     const dateReleased = computed(() => {
       return new Date(gameDetails.value.released).toLocaleString(['en-US'], {
         day: '2-digit',
         month: 'short',
         year: 'numeric',
-      });
-    });
+      })
+    })
 
     const developers = computed(() => {
-      const gameInfo = gameDetails.value;
-      return gameInfo.developers?.map(developer => developer.name).join('');
-    });
+      const gameInfo = gameDetails.value
+      return gameInfo.developers?.map((developer) => developer.name).join('')
+    })
 
     return {
       gameDetails,
       dateReleased,
       developers,
       error,
-    };
+    }
   },
-};
+}
 </script>

@@ -2,7 +2,7 @@
   <div ref="el" class="bg-gray-800 radius-sm shadow-md rounded-md h-full">
     <figure class="relative pb-2/3">
       <img
-        :src="isIntersecting ? game.background_image : null"
+        :src="isShown ? game.background_image : null"
         :alt="`${game.name} cover image`"
         class="absolute h-full w-full object-cover rounded-t-md"
       />
@@ -41,31 +41,32 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, onUnmounted, onBeforeUnmount } from 'vue';
-import useIntersectionObserver from '../composables/useIntersectionObserver';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import useIntersectionObserver from '../composables/useIntersectionObserver'
 
 export default {
+  name: 'GameCard',
   props: {
     game: Object,
   },
-  setup(props, context) {
-    const { game } = props;
-    const el = ref(null);
-    const { observe, unobserve, isIntersecting } = useIntersectionObserver();
+  setup(props) {
+    const { game } = props
+    const el = ref(null)
+    const { observe, unobserve, isShown } = useIntersectionObserver()
 
     const platforms = computed(() => {
-      return game.platforms;
-    });
+      return game.platforms
+    })
 
     onMounted(() => {
-      observe(el.value);
-    });
+      observe(el.value)
+    })
 
     onBeforeUnmount(() => {
-      unobserve(el.value);
-    });
+      unobserve(el.value)
+    })
 
-    return { game, platforms, el, isIntersecting };
+    return { game, platforms, el, isShown }
   },
-};
+}
 </script>
