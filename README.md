@@ -3,7 +3,7 @@
 ## Dependencies
 
 ```
-NodeJS >= 12.0.0
+Node.js >= 12.0.0
 Yarn >= 1.22.4
 ```
 
@@ -18,4 +18,16 @@ $ yarn
 
 ```bash
 yarn dev
+```
+
+## Build
+
+```bash
+yarn build
+```
+
+## Lint
+
+```bash
+yarn lint
 ```
