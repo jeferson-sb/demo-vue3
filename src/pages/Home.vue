@@ -37,7 +37,7 @@
 import { ref, computed } from 'vue'
 
 import GameCard from '../components/GameCard.vue'
-import { useSWRFetch } from '../composables/useSWRFetch'
+import useSWRFetch from '../composables/useSWRFetch'
 
 export default {
   name: 'Home',

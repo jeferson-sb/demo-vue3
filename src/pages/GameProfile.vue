@@ -102,7 +102,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { useSWRFetch } from '../composables/useSWRFetch'
+import useSWRFetch from '../composables/useSWRFetch'
 
 export default {
   name: 'GameProfile',
