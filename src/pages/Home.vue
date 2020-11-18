@@ -38,7 +38,6 @@ import { ref } from 'vue'
 
 import GameCard from '../components/GameCard.vue'
 import useSWRFetch from '../composables/useSWRFetch'
-import useFetch from '../composables/useFetch'
 
 export default {
   name: 'Home',
@@ -48,19 +47,21 @@ export default {
   setup() {
     const searchInput = ref('')
 
-    const { data, error } = useSWRFetch(
+    const { data, error, mutate } = useSWRFetch(
       'https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added',
       {
         revalidateOnFocus: false,
       },
     )
 
-    const { results, hasErrors, execute } = useFetch()
-
     function fetchGame() {
-      execute(`https://api.rawg.io/api/games?search=${searchInput.value}`)
-      data.value = results.value
-      error.value = hasErrors.value
+      mutate(async () => {
+        const response = await fetch(
+          `https://api.rawg.io/api/games?search=${searchInput.value}`,
+        )
+        const results = await response.json()
+        return results
+      })
     }
 
     return {
