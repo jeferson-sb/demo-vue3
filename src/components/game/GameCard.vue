@@ -42,7 +42,7 @@
 
 <script>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import useIntersectionObserver from '../composables/useIntersectionObserver'
+import useIntersectionObserver from '../../composables/useIntersectionObserver'
 
 export default {
   name: 'GameCard',

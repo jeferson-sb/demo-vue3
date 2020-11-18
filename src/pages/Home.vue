@@ -17,18 +17,12 @@
           Search
         </button>
       </div>
-      <ul
-        v-if="games"
-        class="grid grid-cols-1 grid-flow-row gap-4 md:grid-cols-2 lg:grid-cols-3"
-      >
-        <li v-for="game in games.results" :key="game.id">
-          <router-link :to="`/games/${game.slug}`">
-            <GameCard :game="game" />
-          </router-link>
-        </li>
-      </ul>
-      <p v-if="!games && !error">Loading...</p>
-      <p v-if="error">{{ error }}</p>
+      <template v-if="games">
+        <GameList :games="games" />
+      </template>
+      <template v-else-if="!games && !error">
+        <GameListSkeleton />
+      </template>
     </div>
   </div>
 </template>
@@ -36,18 +30,20 @@
 <script>
 import { ref } from 'vue'
 
-import GameCard from '../components/GameCard.vue'
 import useSWRFetch from '../composables/useSWRFetch'
+import GameList from '../components/game/GameList.vue'
+import GameListSkeleton from '../components/game/GameListSkeleton.vue'
 
 export default {
   name: 'Home',
   components: {
-    GameCard,
+    GameList,
+    GameListSkeleton,
   },
   setup() {
     const searchInput = ref('')
 
-    const { data, error, mutate } = useSWRFetch(
+    const { data, error, mutate, isValidating } = useSWRFetch(
       'https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added',
       {
         revalidateOnFocus: false,
@@ -69,6 +65,7 @@ export default {
       games: data,
       error,
       fetchGame,
+      isValidating,
     }
   },
 }
