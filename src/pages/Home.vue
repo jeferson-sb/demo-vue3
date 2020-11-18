@@ -34,10 +34,11 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 import GameCard from '../components/GameCard.vue'
 import useSWRFetch from '../composables/useSWRFetch'
+import useFetch from '../composables/useFetch'
 
 export default {
   name: 'Home',
@@ -46,22 +47,25 @@ export default {
   },
   setup() {
     const searchInput = ref('')
-    const hasClicked = ref(false)
-    const { data: games, error } = useSWRFetch(
+
+    const { data, error } = useSWRFetch(
       'https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added',
       {
         revalidateOnFocus: false,
       },
     )
 
+    const { results, hasErrors, execute } = useFetch()
+
     function fetchGame() {
-      hasClicked.value = true
+      execute(`https://api.rawg.io/api/games?search=${searchInput.value}`)
+      data.value = results.value
+      error.value = hasErrors.value
     }
 
-    // anything that needs to be accessed in the template
     return {
       searchInput,
-      games,
+      games: data,
       error,
       fetchGame,
     }
