@@ -2997,10 +2997,10 @@ supports-color@^7.0.0, supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-swrv@^1.0.0-beta.5:
-  version "1.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/swrv/-/swrv-1.0.0-beta.5.tgz#281cfaeb71c06f0704b388434abb63958a228407"
-  integrity sha512-uEHcCjVvhAuYq0hQrmRigLqCoGncH75yfz2sTsEnSTkHt/FUwUXIhPiL+5B1oUAH3C2zJa6mpAo6BcP6iVMZsw==
+swrv@^1.0.0-beta.7:
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/swrv/-/swrv-1.0.0-beta.7.tgz#45161b3b1e856b83fcfe132dc27735c949caee6d"
+  integrity sha512-WlSVUSR+NxrJWXT5w5zbNP4m9RHGsy4X8dSsgoWudKXqOivZWNj+U5tiMAZFP4VdC9iqIKDW49x+iTwar7+Pqg==
 
 table@^5.2.3:
   version "5.4.6"
