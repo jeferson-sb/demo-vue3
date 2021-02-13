@@ -42,9 +42,10 @@ export default {
   },
   setup() {
     const searchInput = ref('')
+    const currentYear = new Date().getFullYear()
 
     const { data, error, mutate, isValidating } = useSWRFetch(
-      'https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added',
+      `https://api.rawg.io/api/games?dates=${currentYear}-01-01,${currentYear}-12-31&ordering=-rating`,
       {
         revalidateOnFocus: false,
       },
