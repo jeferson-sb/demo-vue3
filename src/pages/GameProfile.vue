@@ -57,11 +57,12 @@
       <hr class="my-4 opacity-25 bg-blue-400" />
       <div class="my-5">
         <span
-          class="mr-2 font-bold border-2 border-green-600 text-green-600 p-3 py-2"
-          >{{ gameDetails.metacritic }}
+          :class="`mr-2 font-bold border-2 border-${metacriticColor}-600 text-${metacriticColor}-600 p-3 py-2`"
+          >{{ gameDetails.metacritic || 'tbd' }}
         </span>
         <a
-          :href="gameDetails.metacritic_platforms"
+          v-if="gameDetails.metacritic_url"
+          :href="gameDetails.metacritic_url"
           target="_blank"
           rel="noopener norefferer"
           class="px-5 py-2 bg-blue-800 hover:bg-blue-500 transition duration-500 ease-in-out shadow-sm"
@@ -103,6 +104,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import useSWRFetch from '../composables/useSWRFetch'
+import getMetacriticColor from '../composables/getMetacriticColor'
 
 export default {
   name: 'GameProfile',
@@ -113,22 +115,28 @@ export default {
       `https://api.rawg.io/api/games/${gameTitle}`,
     )
 
-    const dateReleased = computed(() => {
-      return new Date(gameDetails.value.released).toLocaleString(['en-US'], {
+    const dateReleased = computed(() =>
+      new Date(gameDetails.value.released).toLocaleString(['en-US'], {
         day: '2-digit',
         month: 'short',
         year: 'numeric',
-      })
-    })
+      }),
+    )
 
     const developers = computed(() => {
       const gameInfo = gameDetails.value
       return gameInfo.developers?.map((developer) => developer.name).join('')
     })
 
+    const metacriticColor = computed(() => {
+      const gameInfo = gameDetails.value
+      return getMetacriticColor(gameInfo.metacritic)
+    })
+
     return {
       gameDetails,
       dateReleased,
+      metacriticColor,
       developers,
       error,
     }
