@@ -47,7 +47,7 @@
         </span>
       </div>
       <a
-        v-if="gameDetails.stores"
+        v-if="gameDetails.stores.length"
         :href="gameDetails.stores[0].url"
         target="_blank"
         rel="noopener norefferer"
@@ -113,13 +113,13 @@ export default {
       `https://api.rawg.io/api/games/${gameTitle}`,
     )
 
-    const dateReleased = computed(() => {
-      return new Date(gameDetails.value.released).toLocaleString(['en-US'], {
+    const dateReleased = computed(() =>
+      new Date(gameDetails.value.released).toLocaleString(['en-US'], {
         day: '2-digit',
         month: 'short',
         year: 'numeric',
-      })
-    })
+      }),
+    )
 
     const developers = computed(() => {
       const gameInfo = gameDetails.value
