@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-wrap justify-center">
     <div class="mt-5 mx-4 p-10 max-w-4xl">
-      <h1 class="font-bold text-5xl flex-1 mb-4">Top Games 2020</h1>
+      <h1 class="font-bold text-5xl flex-1 mb-4">
+        Top Games {{ currentYear }}
+      </h1>
       <div class="flex mb-4">
         <input
           type="search"
@@ -63,6 +65,7 @@ export default {
 
     return {
       searchInput,
+      currentYear,
       games: data,
       error,
       fetchGame,
