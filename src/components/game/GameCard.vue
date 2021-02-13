@@ -2,7 +2,7 @@
   <div ref="el" class="bg-gray-800 radius-sm shadow-md rounded-md h-full">
     <figure class="relative pb-2/3">
       <img
-        :src="isShown ? game.background_image : null"
+        :src="isShown ? game.background_image : './src/assets/loading.svg'"
         :alt="`${game.name} cover image`"
         class="absolute h-full w-full object-cover rounded-t-md"
       />
@@ -54,9 +54,7 @@ export default {
     const el = ref(null)
     const { observe, unobserve, isShown } = useIntersectionObserver()
 
-    const platforms = computed(() => {
-      return game.platforms
-    })
+    const platforms = computed(() => game.platforms)
 
     onMounted(() => {
       observe(el.value)
