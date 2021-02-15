@@ -50,11 +50,10 @@ export default {
     game: Object,
   },
   setup(props) {
-    const { game } = props
     const el = ref(null)
     const { observe, unobserve, isShown } = useIntersectionObserver()
 
-    const platforms = computed(() => game.platforms)
+    const platforms = computed(() => props.game.platforms)
 
     onMounted(() => {
       observe(el.value)
@@ -64,7 +63,7 @@ export default {
       unobserve(el.value)
     })
 
-    return { game, platforms, el, isShown }
+    return { platforms, el, isShown }
   },
 }
 </script>
