@@ -74,7 +74,7 @@
 
     <figure class="h-4/5 w-4/5">
       <img
-        :src="gameDetails.background_image"
+        :src="gameDetails.background_image || '/src/assets/no-image.jpg'"
         :alt="`${gameDetails.name} cover image`"
         class="lozad rounded-md shadow-md"
       />

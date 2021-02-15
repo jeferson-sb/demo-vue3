@@ -4,7 +4,7 @@
       <img
         :src="
           isShown
-            ? game.background_image || './src/assets/no-image.jpg'
+            ? game.background_image || '/src/assets/no-image.jpg'
             : './src/assets/loading.svg'
         "
         :alt="`${game.name} cover image`"
