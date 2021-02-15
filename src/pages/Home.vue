@@ -4,21 +4,7 @@
       <h1 class="font-bold text-5xl flex-1 mb-4">
         Top Games {{ currentYear }}
       </h1>
-      <div class="flex mb-4">
-        <input
-          type="search"
-          v-model="searchInput"
-          v-on:keyup.enter="fetchGame"
-          class="flex-1 text-black px-4 py-2 bg-gray-800 text-gray-300 rounded-sm"
-          placeholder="Enter your favorite game..."
-        />
-        <button
-          @click="fetchGame"
-          class="py-2 px-5 uppercase font-bold bg-green-400 rounded-sm ml-2"
-        >
-          Search
-        </button>
-      </div>
+      <SearchBox v-on:fetchGame="fetchGame" />
       <template v-if="games">
         <GameList :games="games" />
       </template>
@@ -30,20 +16,19 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-
 import useSWRFetch from '../composables/useSWRFetch'
+import SearchBox from '../components/search/SearchBox.vue'
 import GameList from '../components/game/GameList.vue'
 import GameListSkeleton from '../components/game/GameListSkeleton.vue'
 
 export default {
   name: 'Home',
   components: {
+    SearchBox,
     GameList,
     GameListSkeleton,
   },
   setup() {
-    const searchInput = ref('')
     const currentYear = new Date().getFullYear()
 
     const { data, error, mutate, isValidating } = useSWRFetch(
@@ -53,10 +38,10 @@ export default {
       },
     )
 
-    function fetchGame() {
+    function fetchGame(searchInput) {
       mutate(async () => {
         const response = await fetch(
-          `https://api.rawg.io/api/games?search=${searchInput.value}`,
+          `https://api.rawg.io/api/games?search=${searchInput}`,
         )
         const results = await response.json()
         return results
@@ -64,7 +49,6 @@ export default {
     }
 
     return {
-      searchInput,
       currentYear,
       games: data,
       error,
