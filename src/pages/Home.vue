@@ -1,5 +1,7 @@
 <template>
-  <section class="container mx-auto grid sm:px-8 sm:py-12 sm:gap-x-8 md:py-16">
+  <section
+    class="container mx-auto md:max-w-5xl grid sm:px-8 sm:py-12 sm:gap-x-8 md:py-16"
+  >
     <div class="mt-6 sm:mt-9 mx-2">
       <h1 class="font-bold text-5xl flex-1 mb-4">
         Top Games {{ currentYear }}

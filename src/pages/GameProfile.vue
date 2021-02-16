@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container mx-auto grid grid-cols-1 sm:grid-cols-2 sm:px-8 sm:py-12 sm:gap-x-8 md:py-16 md:pr-10"
+    class="container mx-auto md:max-w-5xl grid grid-cols-1 sm:grid-cols-2 sm:px-8 sm:py-12 sm:gap-x-8 md:py-16 md:pr-10"
     v-if="gameDetails"
   >
     <div
@@ -26,7 +26,7 @@
         </svg>
       </router-link>
       <h2
-        class="text-xl font-semibold text-white sm:text-2xl sm:leading-7 md:text-4xl"
+        class="text-xl font-semibold text-white sm:text-2xl sm:leading-7 md:text-5xl"
       >
         {{ gameDetails.name }}
       </h2>
@@ -125,7 +125,7 @@
       </div>
     </div>
     <div
-      class="col-start-1 sm:col-start-2 row-start-1 sm:mt-10 sm:row-span-4 flex"
+      class="col-start-1 sm:col-start-2 row-start-1 sm:mt-11 sm:row-span-4 flex"
     >
       <div
         class="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-4 xl:grid-rows-3 gap-2"
