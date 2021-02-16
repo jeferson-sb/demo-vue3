@@ -39,9 +39,8 @@
           >
             <div class="ml-1">
               <img
-                v-if="developer.image_background"
-                :src="developer.image_background"
-                alt=""
+                :src="developer.image_background || '/src/assets/no-image.jpg'"
+                :alt="`${developer.name} badge image`"
                 class="w-7 h-7 rounded-full mr-2 bg-gray-100"
               />
             </div>
