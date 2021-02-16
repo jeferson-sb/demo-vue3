@@ -1,18 +1,16 @@
 <template>
   <section class="container mx-auto grid sm:px-8 sm:py-12 sm:gap-x-8 md:py-16">
-    <div class="">
-      <div class="mt-6 sm:mt-9 mx-2">
-        <h1 class="font-bold text-5xl flex-1 mb-4">
-          Top Games {{ currentYear }}
-        </h1>
-        <SearchBox v-on:fetchGame="fetchGame" />
-        <template v-if="!isValidating && games">
-          <GameList :games="games" />
-        </template>
-        <template v-else-if="isValidating || (!games && !error)">
-          <GameListSkeleton />
-        </template>
-      </div>
+    <div class="mt-6 sm:mt-9 mx-2">
+      <h1 class="font-bold text-5xl flex-1 mb-4">
+        Top Games {{ currentYear }}
+      </h1>
+      <SearchBox v-on:fetchGame="fetchGame" />
+      <template v-if="!isValidating && games">
+        <GameList :games="games" />
+      </template>
+      <template v-else-if="isValidating || (!games && !error)">
+        <GameListSkeleton />
+      </template>
     </div>
   </section>
 </template>
