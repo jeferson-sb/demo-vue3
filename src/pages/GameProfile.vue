@@ -133,8 +133,7 @@
       >
         <div class="relative col-start-1 col-span-2 row-span-2">
           <img
-            v-if="gameDetails.background_image"
-            :src="gameDetails.background_image"
+            :src="gameDetails.background_image || '/src/assets/no-image.jpg'"
             :alt="`${gameDetails.name} cover image`"
             class="absolute inset-0 w-full h-full object-cover bg-gray-100 sm:rounded-lg lozad"
           />
