@@ -12,7 +12,7 @@
     "autoprefixer": "^10.2.4",
     "postcss": "^8.2.4",
     "swrv": "^1.0.0-beta.8",
-    "tailwindcss": "^2.0.2",
+    "tailwindcss": "^2.0.4",
     "vue": "^3.0.2",
     "vue-router": "^4.0.3"
   },
