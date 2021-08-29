@@ -32,9 +32,10 @@ export default {
   },
   setup() {
     const currentYear = new Date().getFullYear()
+    const apiKey = import.meta.env.VITE_RAWG_API_KEY
 
     const { data, error, mutate, isValidating } = useSWRFetch(
-      `https://api.rawg.io/api/games?dates=${currentYear}-01-01,${currentYear}-12-31&ordering=-rating&page_size=24`,
+      `https://api.rawg.io/api/games?key=${apiKey}&dates=${currentYear}-01-01,${currentYear}-12-31&ordering=-rating&page_size=24`,
       {
         revalidateOnFocus: false,
       },
@@ -43,7 +44,7 @@ export default {
     function fetchGame(searchInput) {
       mutate(async () => {
         const response = await fetch(
-          `https://api.rawg.io/api/games?search=${searchInput}`,
+          `https://api.rawg.io/api/games?key=${apiKey}&search=${searchInput}`,
         )
         const results = await response.json()
         return results

@@ -176,8 +176,9 @@ export default {
   setup() {
     const route = useRoute()
     const gameTitle = route.params.name
+    const apiKey = import.meta.env.VITE_RAWG_API_KEY
     const { data: gameDetails, error } = useSWRFetch(
-      `https://api.rawg.io/api/games/${gameTitle}`,
+      `https://api.rawg.io/api/games/${gameTitle}?key=${apiKey}`,
     )
 
     const dateReleased = computed(() =>
