@@ -9,23 +9,23 @@
   },
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "^10.2.4",
-    "postcss": "^8.2.14",
+    "autoprefixer": "^10.3.3",
+    "postcss": "^8.3.6",
     "swrv": "^1.0.0-beta.8",
-    "tailwindcss": "^2.0.2",
-    "vue": "^3.0.2",
+    "tailwindcss": "^2.2.8",
+    "vue": "^3.2.6",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.1.4",
+    "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.0.5",
-    "eslint": "^7.24.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-vue": "^7.17.0",
     "rimraf": "^3.0.2",
-    "vite": "^2.0.0-beta.64"
+    "vite": "^2.5.1"
   }
 }
