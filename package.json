@@ -14,7 +14,7 @@
     "swrv": "^1.0.0-beta.8",
     "tailwindcss": "^2.2.8",
     "vue": "^3.2.6",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.6.0",
